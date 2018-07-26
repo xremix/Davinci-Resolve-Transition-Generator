@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+    function generateScript(){
+      var scriptText = $('#preset').text();
+
+      return scriptText;
+    }
+
+    $(document).ready(function(){
+
+      var bscriptText = btoa(generateScript());
+      $('#downloader').attr("href", "data:application/octet-stream;charset=utf-8;base64,"+bscriptText);
+    });
+    </script>
+    <style>
+    #preset{
+      display: none;
+    }
+    </style>
+  </head>
+  <body>
+    <a id="downloader" download="mytransition.setting" href="data:application/octet-stream;charset=utf-8;base64,Zm9vIGJhcg==">text file</a><br/>
+    <pre id="preset">
+      {
+      	Tools = ordered() {
+      		transform1 = Transform {
+      			CtrlWZoom = false,
+      			NameSet = true,
+      			Inputs = {
+      				Center = Input {
+      					SourceOp = "Path1",
+      					Source = "Position",
+      				},
+      			},
+      			ViewInfo = OperatorInfo { Pos = { 214.667, 48.5758 } },
+      		},
+      		Path1 = PolyPath {
+      			DrawMode = "InsertAndModify",
+      			Inputs = {
+      				Displacement = Input {
+      					SourceOp = "Path1Displacement",
+      					Source = "Value",
+      				},
+      				PolyLine = Input {
+      					Value = Polyline {
+      						Points = {
+      							{ Linear = true, LockY = true, X = 0, Y = 0, RX = -0.333333333333333, RY = 0 },
+      							{ Linear = true, LockY = true, X = -1, Y = 0, LX = 0.333333333333333, LY = 0 }
+      						}
+      					},
+      				},
+      			},
+      		},
+      		Path1Displacement = BezierSpline {
+      			SplineColor = { Red = 255, Green = 0, Blue = 255 },
+      			NameSet = true,
+      			KeyFrames = {
+      				[0] = { 0, RH = { 1.33333333333333, 0.333333333333333 }, Flags = { Linear = true, LockedY = true } },
+      				[4] = { 1, LH = { 2.66666666666667, 0.666666666666667 }, Flags = { Linear = true, LockedY = true } }
+      			}
+      		},
+      		Merge1 = Merge {
+      			Inputs = {
+      				Background = Input {
+      					SourceOp = "transform1",
+      					Source = "Output",
+      				},
+      				Foreground = Input {
+      					SourceOp = "Transform2",
+      					Source = "Output",
+      				},
+      				PerformDepthMerge = Input { Value = 0, },
+      			},
+      			ViewInfo = OperatorInfo { Pos = { 324.333, 64.4242 } },
+      		},
+      		Transform2 = Transform {
+      			NameSet = true,
+      			Inputs = {
+      				Center = Input {
+      					SourceOp = "Path2",
+      					Source = "Position",
+      				},
+      			},
+      			ViewInfo = OperatorInfo { Pos = { 216, 78.2727 } },
+      		},
+      		Path2 = PolyPath {
+      			DrawMode = "InsertAndModify",
+      			Inputs = {
+      				Displacement = Input {
+      					SourceOp = "Path2Displacement",
+      					Source = "Value",
+      				},
+      				PolyLine = Input {
+      					Value = Polyline {
+      						Points = {
+      							{ Linear = true, LockY = true, X = 1, Y = 0, RX = -0.333333333333333, RY = 0 },
+      							{ Linear = true, LockY = true, X = 0, Y = 0, LX = 0.333333333333333, LY = 0 }
+      						}
+      					},
+      				},
+      			},
+      		},
+      		Path2Displacement = BezierSpline {
+      			SplineColor = { Red = 255, Green = 0, Blue = 255 },
+      			NameSet = true,
+      			KeyFrames = {
+      				[0] = { 0, RH = { 1.33333333333333, 0.333333333333333 }, Flags = { Linear = true, LockedY = true } },
+      				[4] = { 1, LH = { 2.66666666666667, 0.666666666666667 }, Flags = { Linear = true, LockedY = true } }
+      			}
+      		},
+      		DirectionalBlur1 = DirectionalBlur {
+      			Inputs = {
+      				Length = Input {
+      					SourceOp = "DirectionalBlur1Length",
+      					Source = "Value",
+      				},
+      				Input = Input {
+      					SourceOp = "Merge1",
+      					Source = "Output",
+      				},
+      			},
+      			ViewInfo = OperatorInfo { Pos = { 433.333, 64.3333 } },
+      		},
+      		DirectionalBlur1Length = BezierSpline {
+      			SplineColor = { Red = 141, Green = 167, Blue = 243 },
+      			NameSet = true,
+      			KeyFrames = {
+      				[0] = { 0, RH = { 0.333333333333333, 0.0333333333333333 }, Flags = { Linear = true } },
+      				[1] = { 0.1, LH = { 0.666666666666667, 0.0666666666666667 }, RH = { 1.66666666666667, 0.1 }, Flags = { Linear = true } },
+      				[3] = { 0.1, LH = { 2.33333333333333, 0.1 }, RH = { 3.33333333333333, 0.0666666666666667 }, Flags = { Linear = true } },
+      				[4] = { 0, LH = { 3.66666666666667, 0.0333333333333333 }, Flags = { Linear = true } }
+      			}
+      		}
+      	},
+      	ActiveTool = "transform1"
+      }
+    </pre>
+  </body>
+</html>
