@@ -48,13 +48,13 @@ function presetGenerator() {
     if(config.transition == "movetoleft") {
       scriptText = scriptText.replace(/@Point1@/g,
         `
-              { Linear = true, LockY = true, X = 0, Y = 0, RX = -0.333333333333333, RY = 0 },
-              { Linear = true, LockY = true, X = -1, Y = 0, LX = 0.333333333333333, LY = 0 }
+        { Linear = true, LockY = true, X = 0, Y = 0, RX = -0.333333333333333, RY = 0 },
+        { Linear = true, LockY = true, X = -1, Y = 0, LX = 0.333333333333333, LY = 0 }
         `);
 
       scriptText = scriptText.replace(/@Point2@/g,
         `
-        { Linear = true, LockY = true, X = 1, Y = 0, RX = 0.333333333333333, RY = 0 },
+        { Linear = true, LockY = true, X = 1, Y = 0, RX = -0.333333333333333, RY = 0 },
         { Linear = true, LockY = true, X = 0, Y = 0, LX = 0.333333333333333, LY = 0 }
         `);
     }else if(config.transition == "movetoright") {

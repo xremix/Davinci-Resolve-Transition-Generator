@@ -8,4 +8,5 @@ Current Version is available [here](https://xremix.github.io/Davinci-Resolve-Tra
 
 ## Run Project
 ### Using Docker
-`docker-compose up`
+- `docker-compose up`
+- go to `localhost:8080`
