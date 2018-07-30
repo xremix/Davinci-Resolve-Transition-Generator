@@ -1,17 +1,25 @@
 'use strict';
 
 function presetGenerator() {
-  var originalScript;
-  this.loadPreset = function(url, done) {
-    $.get(url, function(d) {
-      console.log(d);
-      originalScript = d;
-      done && done();
+  var presetScripts = {};
+  this.loadPresets = function( done) {
+    $.get("transition-presets/move-horizontal.setting", function(d) {
+      presetScripts["moveScript"] = d;
+      $.get("transition-presets/zoom-in-v2.setting", function(d) {
+        presetScripts["zoomScript"] = d;
+        done && done();
+      });
     });
 
   };
-  function getOriginalScript(id) {
-    return originalScript;
+  function getOriginalScript(transition) {
+    console.log(transition);
+    if(transition == "movetoleft" || transition == "movetoright" || transition == "moveup" || transition == "movedown"){
+      return presetScripts["moveScript"];
+    }else if(transition == "zoomin"){
+        return presetScripts["zoomScript"];
+    }
+    throw "Don't know this transition";
   }
 
 
@@ -22,12 +30,20 @@ function presetGenerator() {
     config.firstBlurFrame = config.startFrame + 1;
     config.lastBlurFrame = config.endFrame - 1;
 
-    var scriptText = getOriginalScript("#preset");
+    config.middleFrame = parseInt(config.endFrame / 2);
+
+
+    var scriptText = getOriginalScript(config.transition);
 
     scriptText = scriptText.replace(/@STARTFRAME@/g, config.startFrame);
     scriptText = scriptText.replace(/@ENDFRAME@/g, config.endFrame);
     scriptText = scriptText.replace(/@FIRSTBLURFRAME@/g, config.firstBlurFrame);
     scriptText = scriptText.replace(/@LASTBLURFRAME@/g, config.lastBlurFrame);
+
+
+    scriptText = scriptText.replace(/@BEFOREMIDDLEFRAME@/g, (config.middleFrame-1));
+    scriptText = scriptText.replace(/@MIDDLEFRAME@/g, config.middleFrame);
+    scriptText = scriptText.replace(/@AFTERMIDDLEFRAME@/g, (config.middleFrame+1));
 
     if(config.transition == "movetoleft") {
       scriptText = scriptText.replace(/@Point1@/g,

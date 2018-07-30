@@ -1,0 +1,72 @@
+{
+	Tools = ordered() {
+		Transform1 = Transform {
+			Inputs = {
+				MotionBlur = Input { Value = 1, },
+				Size = Input {
+					SourceOp = "Transform1Size",
+					Source = "Value",
+				},
+				ReferenceSize = Input { Value = 1, },
+			},
+			ViewInfo = OperatorInfo { Pos = { 270.667, 26.1515 } },
+		},
+		Transform1Size = BezierSpline {
+			SplineColor = { Red = 225, Green = 0, Blue = 225 },
+			NameSet = true,
+			KeyFrames = {
+				[0] = { 1, RH = { 1.66666666666667, 1.42333333333333 }, Flags = { Linear = true } },
+				[5] = { 2.27, LH = { 3.33333333333333, 1.84666666666667 }, Flags = { Linear = true } }
+			}
+		},
+		Transform2 = Transform {
+			Inputs = {
+				MotionBlur = Input { Value = 1, },
+				Size = Input {
+					SourceOp = "Transform2Size",
+					Source = "Value",
+				},
+				Edges = Input { Value = 3, },
+			},
+			ViewInfo = OperatorInfo { Pos = { 236.667, 75.2424 } },
+		},
+		Transform2Size = BezierSpline {
+			SplineColor = { Red = 225, Green = 0, Blue = 225 },
+			NameSet = true,
+			KeyFrames = {
+				[4] = { 0.5, RH = { 5.66666666666667, 0.666666666666667 }, Flags = { Linear = true } },
+				[9] = { 1, LH = { 7.33333333333333, 0.833333333333333 }, Flags = { Linear = true } }
+			}
+		},
+		Dissolve1 = Dissolve {
+			Transitions = {
+				[0] = "DFTDissolve"
+			},
+			CtrlWZoom = false,
+			Inputs = {
+				Mix = Input {
+					SourceOp = "Dissolve1BackgroundForeground",
+					Source = "Value",
+				},
+				Background = Input {
+					SourceOp = "Transform1",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "Transform2",
+					Source = "Output",
+				},
+			},
+			ViewInfo = OperatorInfo { Pos = { 400, 44.9394 } },
+		},
+		Dissolve1BackgroundForeground = BezierSpline {
+			SplineColor = { Red = 16, Green = 164, Blue = 235 },
+			NameSet = true,
+			KeyFrames = {
+				[4] = { 0, RH = { 4.66666666666667, 0.333333333333333 }, Flags = { Linear = true } },
+				[6] = { 1, LH = { 5.33333333333333, 0.666666666666667 }, Flags = { Linear = true } }
+			}
+		}
+	},
+	ActiveTool = "Dissolve1"
+}
