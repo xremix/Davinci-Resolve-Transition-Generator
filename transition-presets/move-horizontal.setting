@@ -21,8 +21,7 @@
         PolyLine = Input {
           Value = Polyline {
             Points = {
-              { Linear = true, LockY = true, X = 0, Y = @P1P1Y@0, RX = @P1P1RX@0.333333333333333, RY = 0 },
-              { Linear = true, LockY = true, X = @P1P2X@1, Y = 0, LX = @P1P2LX@0.333333333333333, LY = 0 }
+              @Point1@
             }
           },
         },
@@ -70,8 +69,7 @@
         PolyLine = Input {
           Value = Polyline {
             Points = {
-              { Linear = true, LockY = true, X = @P2P1X@1, Y = 0, RX = @P2P1RX@0.333333333333333, RY = 0 },
-              { Linear = true, LockY = true, X = 0, Y = 0, LX = @P2P2LX@0.333333333333333, LY = 0 }
+              @Point2@
             }
           },
         },
@@ -91,6 +89,7 @@
           SourceOp = "DirectionalBlur1Length",
           Source = "Value",
         },
+        @BlurAngle@
         Input = Input {
           SourceOp = "Merge1",
           Source = "Output",

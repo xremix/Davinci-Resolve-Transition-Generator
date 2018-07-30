@@ -1,19 +1,21 @@
-function presetGenerator(){
+'use strict';
+
+function presetGenerator() {
   var originalScript;
-  this.loadPreset = function(url, done){
-    $.get(url, function(d){
+  this.loadPreset = function(url, done) {
+    $.get(url, function(d) {
       console.log(d);
       originalScript = d;
       done && done();
     });
 
   };
-  function getOriginalScript(id){
+  function getOriginalScript(id) {
     return originalScript;
   }
 
 
-  this.generateScript = function(config){
+  this.generateScript = function(config) {
     config.startFrame = 0;
     config.endFrame = config.frames - 1;
 
@@ -27,17 +29,60 @@ function presetGenerator(){
     scriptText = scriptText.replace(/@FIRSTBLURFRAME@/g, config.firstBlurFrame);
     scriptText = scriptText.replace(/@LASTBLURFRAME@/g, config.lastBlurFrame);
 
-    if(config.transition == "movetoleft"){
-      scriptText = scriptText.replace(/@P1P1RX@/g, "-");
-      scriptText = scriptText.replace(/@P1P2X@/g, "-");
-      scriptText = scriptText.replace(/@P2P1RX@/g, "-");
-    }else if(config.transition == "movetoright"){
-      scriptText = scriptText.replace(/@P1P2LX@/g, "-");
-      scriptText = scriptText.replace(/@P2P1X@/g, "-");
-      scriptText = scriptText.replace(/@P2P2LX@/g, "-");
+    if(config.transition == "movetoleft") {
+      scriptText = scriptText.replace(/@Point1@/g,
+        `
+              { Linear = true, LockY = true, X = 0, Y = 0, RX = -0.333333333333333, RY = 0 },
+              { Linear = true, LockY = true, X = -1, Y = 0, LX = 0.333333333333333, LY = 0 }
+        `);
+
+      scriptText = scriptText.replace(/@Point2@/g,
+        `
+              { Linear = true, LockY = true, X = @P2P1X@1, Y = 0, RX = @P2P1RX@0.333333333333333, RY = 0 },
+              { Linear = true, LockY = true, X = 0, Y = 0, LX = @P2P2LX@0.333333333333333, LY = 0 }
+        `);
+    }else if(config.transition == "movetoright") {
+      scriptText = scriptText.replace(/@Point1@/g,
+        `
+        { Linear = true, LockY = true, X = 0, Y = 0, RX = 0.333333333333333, RY = 0 },
+        { Linear = true, LockY = true, X = 1, Y = 0, LX = -0.333333333333333, LY = 0 }
+        `);
+
+      scriptText = scriptText.replace(/@Point2@/g,
+        `
+          { Linear = true, LockY = true, X = -1, Y = 0, RX = 0.333333333333333, RY = 0 },
+          { Linear = true, LockY = true, X = 0, Y = 0, LX = -0.333333333333333, LY = 0 }
+        `);
+    }else if(config.transition == "moveup") {
+      scriptText = scriptText.replace(/@Point1@/g,
+        `
+          { Linear = true, LockY = true, X = 0, Y = 0, RX = 0, RY = 0.333333333333333 },
+          { Linear = true, LockY = true, X = 0, Y = 1, LX = 0, LY = -0.333333333333333 }
+        `);
+
+      scriptText = scriptText.replace(/@Point2@/g,
+        `
+          { Linear = true, LockY = true, X = 0, Y = -1, RX = 0, RY = 0.333333333333333 },
+          { Linear = true, LockY = true, X = 0, Y = 0, LX = 0, LY = -0.333333333333333 }
+        `);
+    }else if(config.transition == "movedown") {
+      scriptText = scriptText.replace(/@Point1@/g,
+        `
+          { Linear = true, LockY = true, X = 0, Y = -1, RX = 0, RY = 0.333333333333333 },
+          { Linear = true, LockY = true, X = 0, Y = 0, LX = 0, LY = -0.333333333333333 }
+        `);
+
+      scriptText = scriptText.replace(/@Point2@/g,
+        `
+        { Linear = true, LockY = true, X = 0, Y = 0, RX = 0, RY = 0.333333333333333 },
+        { Linear = true, LockY = true, X = 0, Y = 1, LX = 0, LY = -0.333333333333333 }
+        `);
     }
-    scriptText = scriptText.replace(/@P\dP\d..?@/g, "");
-    // console.log(scriptText);
+    if(config.transition == "movedown" || config.transition == "moveup") {
+      scriptText = scriptText.replace(/@BlurAngle@/g, "Angle = Input { Value = 90, },");
+    }
+
+    scriptText = scriptText.replace(/@[a-zA-Z0-9]+@/g, "");
     return scriptText;
   };
 }
