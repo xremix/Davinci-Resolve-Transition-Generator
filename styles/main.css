@@ -14,3 +14,12 @@ a, a:link, a:visited{
 #preset, #originalpreset{
   display: none;
 }
+
+.blocked{
+    pointer-events: none;
+   cursor: default;
+   text-decoration: none;
+   color: black;
+   opacity: 0.5;
+}
+

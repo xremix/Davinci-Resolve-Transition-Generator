@@ -16,9 +16,11 @@ function generateAllScriptLinks() {
 $(document).ready(function() {
   generator.loadPresets(function(){
     generateAllScriptLinks();
+    $('.download-area').removeClass("blocked");
   });
 
   $("input").keyup(function(){
+    $('#frames-output').text($("#frames").val());
     generateAllScriptLinks();
   });
 });
