@@ -16,10 +16,14 @@ function generateAllScriptLinks() {
 $(document).ready(function() {
   generator.loadPresets(function(){
     generateAllScriptLinks();
+    $('#frame-label').text($("#frames").val());
     $('.download-area').removeClass("blocked");
   });
-
-  $("input").keyup(function(){
+  $('input[type=range]').on('input', function () {
+      $(this).trigger('change');
+  });
+  $("input").change(function(){
+    $('#frame-label').text($("#frames").val());
     $('#frames-output').text($("#frames").val());
     generateAllScriptLinks();
   });

@@ -2,7 +2,10 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Transition Generator - for Davinci Resolve</title>
+  <meta name="description" content="Generate Transitions for Davinci Resolve within seconds">
+  <meta name="keywords" content="Davinci,Resolve,Fusion,Atom,Transition,Generator,Swipe,Zoom,Left,Right,Up,Top,In,Out">
+  <meta name="author" content="Toni Hoffmann">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -16,50 +19,73 @@
     <div class="row">
       <div class="col-12">
         <h1>Davinci Resolve 15 Fusion - Transition Generator</h1>
+        <p>Generate you own transitions within seconds</p>
+        <h2>Set Transition Length</h2>
         <form>
-          <div class="form-group col-3">
-            <label for="exampleFormControlInput1">Frames</label>
-            <input type="text" name="" id="frames" class="form-control" value="5">
+          <div class="form-group col-lg-5">
+            <input type="range" class="custom-range" id="frames" min="4" max="25" value="5" step="1" />
+            <br/>
+            Your Transition will take <span id="frame-label"></span> <label>Frames</label>
           </div>
         </form>
       </div>
-      <div class="col-12"><h2>Swipe Transition</h2></div>
-      <div class="col-6 text-center download-container mt-5">
+      <div class="col-12"><h2>Swipe Transitions</h2></div>
+
+
+      <div class="col-md-6 text-center download-container mt-5">
+        <b>Move to Left Transition Preset</b>
         <a id="movetoleftlink" class="transition-link" download="movetoleft.setting" data-transition="movetoleft">
-          <i class="fa fa-arrow-left"></i> <i class="fa fa-camera"></i><br/>
-          Download<br/>
-          Move to Left Transition Preset
+          <div class="image-container position-relative" style="height:170px">
+            <img class="align-self-center" src="images/transition-horizontal.png" alt="">
+            <i class="fa fa-arrow-left position-absolute"></i>
+            <div class="image-container-download-text position-absolute mx-auto align-self-center">Download<br/></div>
+          </div>
         </a>
       </div>
-      <div class="col-6 text-center download-container mt-5">
+      <div class="col-md-6 text-center download-container mt-5">
+        <b>Move to Right Transition Preset</b>
         <a id="movetorightlink" class="transition-link" download="movetoright.setting" data-transition="movetoright">
-          <i class="fa fa-camera"></i> <i class="fa fa-arrow-right"></i><br/>
-          Download<br/>
-          Move to Right Transition Preset
+          <div class="image-container position-relative" style="height:170px">
+            <img class="align-self-center" src="images/transition-horizontal.png" alt="">
+            <i class="fa fa-arrow-right position-absolute"></i>
+            <div class="image-container-download-text position-absolute mx-auto align-self-center">Download<br/></div>
+          </div>
         </a>
       </div>
-      <div class="col-6 text-center download-container mt-5">
+      <div class="col-md-6 text-center download-container mt-5">
+        <b>Move Up Transition Preset</b>
         <a id="moveuplink" class="transition-link" download="moveup.setting" data-transition="moveup">
-          <i class="fa fa-camera"></i> <i class="fa fa-arrow-up"></i><br/>
-          Download<br/>
-          Move Up Transition Preset
+          <div class="image-container position-relative" style="height:170px">
+            <img class="align-self-center" src="images/transition-vertical.png" alt="">
+            <i class="fa fa-arrow-up position-absolute"></i>
+            <div class="image-container-download-text position-absolute mx-auto align-self-center">Download<br/></div>
+          </div>
         </a>
       </div>
-      <div class="col-6 text-center download-container mt-5">
+      <div class="col-md-6 text-center download-container mt-5">
+        <b>Move Down Transition Preset</b>
         <a id="movedownlink" class="transition-link" download="movedown.setting" data-transition="movedown">
-          <i class="fa fa-camera"></i> <i class="fa fa-arrow-down"></i><br/>
-          Download<br/>
-          Move Down Transition Preset
+          <div class="image-container position-relative" style="height:170px">
+            <img class="align-self-center" src="images/transition-vertical.png" alt="">
+            <i class="fa fa-arrow-down position-absolute"></i>
+            <div class="image-container-download-text position-absolute mx-auto align-self-center">Download<br/></div>
+          </div>
         </a>
       </div>
-      <div class="col-12"><h2>Zoom Transition</h2></div>
-      <div class="col-6 text-center download-container mt-5">
+
+      <div class="col-12 mt-5"><h2>Zoom Transition</h2></div>
+
+      <div class="col-md-6 text-center download-container mt-5">
+        <b>Zoom In Transition Preset</b>
         <a id="zoominlink" class="transition-link" download="zoomin.setting" data-transition="zoomin">
-          <i class="fa fa-camera"></i> <i class="fa fa-arrows-alt"></i><br/>
-          Download<br/>
-          Zoom In Transition Preset
+          <div class="image-container position-relative" style="height:170px">
+            <img class="align-self-center" src="images/transition-zoom.png" alt="">
+            <i class="fa fa-arrows-alt position-absolute"></i>
+            <div class="image-container-download-text position-absolute mx-auto align-self-center">Download<br/></div>
+          </div>
         </a>
       </div>
+
     </div>
   </div>
 </body>

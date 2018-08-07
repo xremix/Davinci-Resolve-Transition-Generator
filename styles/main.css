@@ -7,9 +7,6 @@ a, a:link, a:visited{
 
 }
 */
-.download-container .fa{
-  font-size:2em;
-}
 
 #preset, #originalpreset{
   display: none;
@@ -23,3 +20,32 @@ a, a:link, a:visited{
    opacity: 0.5;
 }
 
+
+.image-container-download-text{
+  top:65px;
+  left: 0px;
+  right:0px;
+  background-color: rgba(255,255,255,0.8);
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.image-container:hover .image-container-download-text{
+  opacity: 1;
+}
+.image-container{
+  overflow: hidden;
+  /* transition: all .4s; */
+}
+.image-container:hover img{
+  /* transform: scale(1.2); */
+}
+
+.image-container .fa{
+
+  top:55px;
+  left: 0px;
+  right:0px;
+  font-size:5em;
+  color: rgba(255,255,255,0.8);
+}
